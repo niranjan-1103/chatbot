@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura - Warm AI Wellness Companion</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">🌱</div>
+                <div class="logo-text">
+                    <h1>Aura</h1>
+                    <span>Wellness Companion</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" data-tab="chat">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    <span>Chatbot</span>
+                </button>
+                <button class="nav-btn" data-tab="resources">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    <span>Self-Care & Resources</span>
+                </button>
+                <button class="nav-btn" data-tab="about">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <span>About & Disclaimer</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                    <span class="theme-text">Dark Mode</span>
+                </button>
+                <div class="disclaimer-mini">
+                    <span class="shield-icon">🛡️</span>
+                    <span>100% Confidential AI Companion</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header for Mobile / Top Status Bar -->
+            <header class="mobile-header">
+                <div class="mobile-brand">
+                    <span class="logo-icon">🌱</span>
+                    <h2>Aura</h2>
+                </div>
+                <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </div>
+            </header>
+
+            <!-- TABS CONTENT -->
+            
+            <!-- Tab 1: Chatbot -->
+            <section id="chat-tab" class="tab-panel active">
+                <div class="chat-wrapper">
+                    <!-- Chat Log Container -->
+                    <div class="chat-log-container" id="chatLogContainer">
+                        <div class="chat-log" id="chatLog">
+                            <!-- Welcome Message -->
+                            <div class="message model">
+                                <div class="avatar">🤖</div>
+                                <div class="message-bubble">
+                                    <p>Hello! I am <strong>Aura</strong>, your supportive mental health and wellness companion. 🌸</p>
+                                    <p>I'm here to listen, support, and help you process whatever is on your mind today, completely free of judgment. How are you feeling right now?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Voice Indicator Overlay / Processing Info -->
+                    <div class="status-indicator-bar" id="statusIndicatorBar">
+                        <span id="statusText" class="status-text">Ready to listen or chat</span>
+                        <div class="pulse-dots" id="pulseDots" style="display: none;">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+
+                    <!-- Input Bar -->
+                    <div class="chat-input-container">
+                        <button class="mic-btn" id="micBtn" title="Speak to Aura">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-mic-off" style="display: none;"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path><path d="M17 11.5a7 7 0 0 1-12 0"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        </button>
+                        <input type="text" id="chatInput" placeholder="Type your feelings or click the mic to speak..." autocomplete="off">
+                        <button class="send-btn" id="sendBtn" title="Send message">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 2: Self-Care & Resources -->
+            <section id="resources-tab" class="tab-panel">
+                <div class="resources-container">
+                    <h2 class="section-title">Self-Care Tools & Resources</h2>
+                    
+                    <div class="resources-grid">
+                        <!-- Card 1: Interactive Deep Breathing -->
+                        <div class="resource-card breathing-card">
+                            <h3>🌬️ Interactive Deep Breathing</h3>
+                            <p>Follow the expanding circle below to help calm your nervous system. Box breathing is a simple yet powerful way to reduce stress.</p>
+                            <div class="breathing-widget">
+                                <div class="breathing-circle-outer">
+                                    <div class="breathing-circle" id="breathingCircle"></div>
+                                </div>
+                                <div class="breathing-text" id="breathingText">Inhale...</div>
+                                <button class="action-btn" id="startBreathingBtn">Start Exercise</button>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: 5-4-3-2-1 Grounding Method -->
+                        <div class="resource-card">
+                            <h3>🧩 5-4-3-2-1 Grounding Technique</h3>
+                            <p>When anxiety takes over, focus on your immediate surroundings to bring yourself back to the present moment:</p>
+                            <ul class="grounding-list">
+                                <li><strong>5</strong> things you can <strong>see</strong> around you.</li>
+                                <li><strong>4</strong> things you can <strong>touch</strong> or feel.</li>
+                                <li><strong>3</strong> things you can <strong>hear</strong> (birds, traffic, music).</li>
+                                <li><strong>2</strong> things you can <strong>smell</strong> (coffee, grass, soap).</li>
+                                <li><strong>1</strong> thing you can <strong>taste</strong> or a positive thing to say to yourself.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 3: Quick Stress Relief Tips -->
+                        <div class="resource-card">
+                            <h3>💡 Immediate Stress-Relief Tips</h3>
+                            <div class="tips-grid">
+                                <div class="tip-item">
+                                    <strong>💧 Hydrate First</strong>
+                                    <span>Drink a glass of cold water slowly. It forces breathing regulation.</span>
+                                </div>
+                                <div class="tip-item">
+                                    <strong>🚶 Take a Step Away</strong>
+                                    <span>Stand up, stretch, or step outside for 2 minutes of fresh air.</span>
+                                </div>
+                                <div class="tip-item">
+                                    <strong>✍️ Brain Dump</strong>
+                                    <span>Write down everything worrying you on a piece of paper, then throw it away.</span>
+                                </div>
+                                <div class="tip-item">
+                                    <strong>🎵 Lo-Fi Beats</strong>
+                                    <span>Put on soft music without lyrics to help focus your brain.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Crisis Support / Helplines -->
+                        <div class="resource-card emergency-card">
+                            <h3>🚨 Need Urgent Help? (India)</h3>
+                            <p>If you or someone you know is in distress or experiencing a mental health crisis, please reach out immediately. You do not have to carry this alone.</p>
+                            
+                            <div class="helpline-directory">
+                                <div class="helpline-item">
+                                    <div class="helpline-name">📞 Tele-MANAS (Govt of India)</div>
+                                    <div class="helpline-details">Call <strong>14416</strong> or <strong>1800-891-4416</strong> (24/7, free, confidential support).</div>
+                                </div>
+                                <div class="helpline-item">
+                                    <div class="helpline-name">📞 Kiran Mental Health Helpline</div>
+                                    <div class="helpline-details">Call <strong>1800-599-0019</strong> (24/7, free, confidential helpline run by Govt of India).</div>
+                                </div>
+                                <div class="helpline-item">
+                                    <div class="helpline-name">📞 Vandrevala Foundation & AASRA</div>
+                                    <div class="helpline-details">Vandrevala Foundation: Call <strong>+91-9999666555</strong> / <strong>+91-7303333333</strong> (24/7). AASRA: Call <strong>+91-9820466726</strong>.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 3: About & Disclaimer -->
+            <section id="about-tab" class="tab-panel">
+                <div class="about-container">
+                    <h2 class="section-title">About Aura</h2>
+                    
+                    <div class="about-card">
+                        <div class="about-hero">
+                            <span class="hero-emoji">✨</span>
+                            <h3>Your Calm Space</h3>
+                            <p>Aura is designed to help you process stress, anxiety, and the daily pressures of life. It uses generative AI to provide active listening, empathy, and evidence-based self-care tools.</p>
+                        </div>
+
+                        <hr class="card-divider">
+
+                        <div class="disclaimer-section">
+                            <div class="disclaimer-badge">⚠️ IMPORTANT DISCLAIMER</div>
+                            <p class="disclaimer-text">
+                                Aura is an AI-powered conversational agent built to support emotional well-being. 
+                                <strong>It is NOT a medical device, a human therapist, or a clinical replacement.</strong> 
+                                Aura cannot diagnose conditions, prescribe medications, or provide clinical treatments. 
+                                By using this application, you acknowledge that this is a supportive guidance tool and not a clinical intervention.
+                            </p>
+                            <p class="disclaimer-text">
+                                If you are experiencing persistent mental health challenges or thoughts of self-harm, please seek professional support from a licensed therapist, counselor, or medical doctor.
+                            </p>
+                        </div>
+
+                        <hr class="card-divider">
+
+                        <div class="privacy-section">
+                            <h4>🔒 Privacy & Confidentiality</h4>
+                            <p>We care deeply about your privacy. Conversations are processed securely in real-time to generate responses and are not stored permanently by Aura. Your voice recordings are processed locally in your browser and are never sent to our servers.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Navigation Menu Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav-panel">
+            <div class="mobile-nav-header">
+                <h3>Menu</h3>
+                <span class="close-menu" id="closeMenuBtn">&times;</span>
+            </div>
+            <div class="mobile-nav-links">
+                <button class="mobile-nav-link active" data-tab="chat">🌱 Chatbot</button>
+                <button class="mobile-nav-link" data-tab="resources">❤️ Self-Care & Resources</button>
+                <button class="mobile-nav-link" data-tab="about">ℹ️ About & Disclaimer</button>
+                <button class="mobile-nav-link theme-toggle-link" id="mobileThemeToggleBtn">
+                    <span class="theme-icon">🌙</span>
+                    <span class="theme-text">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
