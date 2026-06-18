@@ -1,0 +1,21 @@
+[project]
+name = "chatbot"
+version = "0.1.0"
+description = "A FastAPI chatbot using google-genai"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi",
+    "google-genai",
+    "uvicorn",
+    "python-dotenv",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false
+
+[tool.vercel]
+entrypoint = "api.index:app"
